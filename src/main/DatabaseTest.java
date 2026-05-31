@@ -94,6 +94,47 @@ public class DatabaseTest {
         } else {
             System.out.println("Delete test failed.");
         }
+        
+        // 8. Update stock quantity
+System.out.println("\nUpdate stock quantity:");
+
+boolean stockUpdated = dao.updateStockQuantity("P1002", -15);
+
+if (stockUpdated) {
+    System.out.println("Stock quantity updated successfully.");
+} else {
+    System.out.println("Stock quantity was not updated.");
+}
+
+Product afterStockUpdate = dao.searchProductById("P1002");
+
+if (afterStockUpdate != null) {
+    printProduct(afterStockUpdate);
+}
+
+// 9. Low-stock products
+System.out.println("\nLow-stock products:");
+
+ArrayList<Product> lowStockProducts = dao.getLowStockProducts(10);
+
+if (lowStockProducts.isEmpty()) {
+    System.out.println("No low-stock products found.");
+} else {
+    for (Product p : lowStockProducts) {
+        printProduct(p);
+    }
+}
+
+// 10. Invalid stock update test
+System.out.println("\nInvalid stock update test:");
+
+boolean invalidStockUpdate = dao.updateStockQuantity("P1002", -1000);
+
+if (!invalidStockUpdate) {
+    System.out.println("Invalid stock update was prevented.");
+} else {
+    System.out.println("Invalid stock update failed.");
+}
     }
 
     private static void printProduct(Product p) {
