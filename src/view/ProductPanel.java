@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package view;
 
 import controller.InventoryController;
@@ -89,6 +85,11 @@ public class ProductPanel extends JPanel {
 
         addButton.addActionListener(e -> addProduct());
         viewButton.addActionListener(e -> viewAllProducts());
+        searchButton.addActionListener(e -> searchProduct());
+        updateButton.addActionListener(e -> updateProduct());
+        deleteButton.addActionListener(e -> deleteProduct());
+        updateStockButton.addActionListener(e -> updateStockQuantity());
+        lowStockButton.addActionListener(e -> viewLowStockProducts());
         clearButton.addActionListener(e -> clearFields());
 
         return panel;
@@ -140,14 +141,156 @@ public class ProductPanel extends JPanel {
         }
 
         for (Product p : products) {
-            displayArea.append(
-                    p.getId() + " | " +
-                    p.getName() + " | " +
-                    p.getCategory() + " | " +
-                    p.getPrice() + " | " +
-                    p.getQuantity() + "\n"
-            );
+            displayArea.append(formatProduct(p));
         }
+    }
+
+    private void searchProduct() {
+        String id = idField.getText().trim();
+        String name = nameField.getText().trim();
+
+        displayArea.setText("");
+
+        if (!id.isEmpty()) {
+            Product product = controller.searchProductById(id);
+
+            if (product != null) {
+                displayArea.append(formatProduct(product));
+            } else {
+                displayArea.setText("Product not found.");
+            }
+
+            return;
+        }
+
+        if (!name.isEmpty()) {
+            ArrayList<Product> products = controller.searchProductsByName(name);
+
+            if (products.isEmpty()) {
+                displayArea.setText("No products found.");
+            } else {
+                for (Product p : products) {
+                    displayArea.append(formatProduct(p));
+                }
+            }
+
+            return;
+        }
+
+        JOptionPane.showMessageDialog(this, "Please enter Product ID or Product Name to search.");
+    }
+
+    private void updateProduct() {
+        try {
+            String id = idField.getText().trim();
+            String name = nameField.getText().trim();
+            String category = categoryField.getText().trim();
+            double price = Double.parseDouble(priceField.getText().trim());
+            int quantity = Integer.parseInt(quantityField.getText().trim());
+
+            boolean updated = controller.updateProduct(id, name, category, price, quantity);
+
+            if (updated) {
+                JOptionPane.showMessageDialog(this, "Product updated successfully.");
+                clearFields();
+                viewAllProducts();
+            } else {
+                JOptionPane.showMessageDialog(this, "Product was not updated. Please check the product ID and input.");
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Price must be a number and quantity must be an integer.");
+        }
+    }
+
+    private void deleteProduct() {
+        String id = idField.getText().trim();
+
+        if (id.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter Product ID to delete.");
+            return;
+        }
+
+        int confirm = JOptionPane.showConfirmDialog(
+                this,
+                "Are you sure you want to delete this product?",
+                "Confirm Delete",
+                JOptionPane.YES_NO_OPTION
+        );
+
+        if (confirm == JOptionPane.YES_OPTION) {
+            boolean deleted = controller.deleteProduct(id);
+
+            if (deleted) {
+                JOptionPane.showMessageDialog(this, "Product deleted successfully.");
+                clearFields();
+                viewAllProducts();
+            } else {
+                JOptionPane.showMessageDialog(this, "Product was not deleted. Product ID may not exist.");
+            }
+        }
+    }
+
+    private void updateStockQuantity() {
+        try {
+            String id = idField.getText().trim();
+
+            if (id.isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Please enter Product ID.");
+                return;
+            }
+
+            int change = Integer.parseInt(quantityField.getText().trim());
+
+            boolean updated = controller.updateStockQuantity(id, change);
+
+            if (updated) {
+                JOptionPane.showMessageDialog(this, "Stock quantity updated successfully.");
+                clearFields();
+                viewAllProducts();
+            } else {
+                JOptionPane.showMessageDialog(this, "Stock was not updated. Please check the Product ID or quantity.");
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Quantity must be an integer. Use positive number to add stock or negative number to reduce stock.");
+        }
+    }
+
+    private void viewLowStockProducts() {
+        int limit = 10;
+
+        try {
+            String quantityText = quantityField.getText().trim();
+
+            if (!quantityText.isEmpty()) {
+                limit = Integer.parseInt(quantityText);
+            }
+
+            ArrayList<Product> products = controller.getLowStockProducts(limit);
+
+            displayArea.setText("");
+
+            if (products.isEmpty()) {
+                displayArea.setText("No low-stock products found.");
+            } else {
+                displayArea.append("Low-stock products below " + limit + ":\n");
+                for (Product p : products) {
+                    displayArea.append(formatProduct(p));
+                }
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Quantity must be an integer for low-stock limit.");
+        }
+    }
+
+    private String formatProduct(Product p) {
+        return p.getId() + " | " +
+                p.getName() + " | " +
+                p.getCategory() + " | " +
+                p.getPrice() + " | " +
+                p.getQuantity() + "\n";
     }
 
     private void clearFields() {
