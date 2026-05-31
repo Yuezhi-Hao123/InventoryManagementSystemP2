@@ -1,0 +1,13 @@
+----------------------------------------------------------------
+Sun May 31 18:52:38 NZST 2026:
+Booting Derby version The Apache Software Foundation - Apache Derby - 10.14.2.0 - (1828579): instance a816c00e-019e-7cce-591d-00000e9dca48 
+on database directory E:\p12-25294014-25290070\InventoryManagementSystem\inventoryDB with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@232204a1 
+Loaded from file:/E:/p12-25294014-25290070/InventoryManagementSystem/lib/derby.jar
+java.vendor=Eclipse Adoptium
+java.runtime.version=25.0.2+10-LTS
+user.dir=E:\p12-25294014-25290070\InventoryManagementSystem
+os.name=Windows 11
+os.arch=amd64
+os.version=10.0
+derby.system.home=null
+Database Class Loader started - derby.database.classpath=''
