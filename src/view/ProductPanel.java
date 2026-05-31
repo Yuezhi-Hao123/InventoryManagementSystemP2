@@ -4,8 +4,11 @@
  */
 package view;
 
+import controller.InventoryController;
+import model.Product;
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class ProductPanel extends JPanel {
 
@@ -25,7 +28,11 @@ public class ProductPanel extends JPanel {
     private JButton lowStockButton;
     private JButton clearButton;
 
+    private InventoryController controller;
+
     public ProductPanel() {
+        controller = new InventoryController();
+
         setLayout(new BorderLayout(10, 10));
 
         add(createInputPanel(), BorderLayout.NORTH);
@@ -80,6 +87,7 @@ public class ProductPanel extends JPanel {
         panel.add(lowStockButton);
         panel.add(clearButton);
 
+        viewButton.addActionListener(e -> viewAllProducts());
         clearButton.addActionListener(e -> clearFields());
 
         return panel;
@@ -95,6 +103,27 @@ public class ProductPanel extends JPanel {
         panel.add(new JScrollPane(displayArea), BorderLayout.CENTER);
 
         return panel;
+    }
+
+    private void viewAllProducts() {
+        ArrayList<Product> products = controller.getAllProducts();
+
+        displayArea.setText("");
+
+        if (products.isEmpty()) {
+            displayArea.setText("No products found.");
+            return;
+        }
+
+        for (Product p : products) {
+            displayArea.append(
+                    p.getId() + " | " +
+                    p.getName() + " | " +
+                    p.getCategory() + " | " +
+                    p.getPrice() + " | " +
+                    p.getQuantity() + "\n"
+            );
+        }
     }
 
     private void clearFields() {
