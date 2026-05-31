@@ -12,7 +12,7 @@ public class DatabaseTest {
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO();
 
-        Product product = new Product("P1001", "Keyboard", "Electronics", 49.99, 10);
+        Product product = new Product("P1002", "Mouse", "Electronics", 29.99, 15);
 
         boolean added = dao.addProduct(product);
 
@@ -24,8 +24,36 @@ public class DatabaseTest {
 
         ArrayList<Product> products = dao.getAllProducts();
 
-        System.out.println("All products:");
+        System.out.println("\nAll products:");
         for (Product p : products) {
+            System.out.println(
+                    p.getId() + " | " +
+                    p.getName() + " | " +
+                    p.getCategory() + " | " +
+                    p.getPrice() + " | " +
+                    p.getQuantity()
+            );
+        }
+
+        System.out.println("\nSearch by ID:");
+        Product found = dao.searchProductById("P1001");
+
+        if (found != null) {
+            System.out.println(
+                    found.getId() + " | " +
+                    found.getName() + " | " +
+                    found.getCategory() + " | " +
+                    found.getPrice() + " | " +
+                    found.getQuantity()
+            );
+        } else {
+            System.out.println("Product not found.");
+        }
+
+        System.out.println("\nSearch by name:");
+        ArrayList<Product> searchResults = dao.searchProductsByName("key");
+
+        for (Product p : searchResults) {
             System.out.println(
                     p.getId() + " | " +
                     p.getName() + " | " +
