@@ -9,7 +9,7 @@ public class DatabaseTest {
     public static void main(String[] args) {
         ProductDAO dao = new ProductDAO();
 
-       
+        // 1. Add product
         System.out.println("Add product:");
         Product product = new Product("P1002", "Mouse", "Electronics", 29.99, 15);
 
@@ -21,7 +21,7 @@ public class DatabaseTest {
             System.out.println("Product was not added. It may already exist.");
         }
 
-        
+        // 2. View all products
         System.out.println("\nAll products:");
         ArrayList<Product> products = dao.getAllProducts();
 
@@ -29,7 +29,7 @@ public class DatabaseTest {
             printProduct(p);
         }
 
-        
+        // 3. Search product by ID
         System.out.println("\nSearch by ID:");
         Product found = dao.searchProductById("P1001");
 
@@ -39,7 +39,7 @@ public class DatabaseTest {
             System.out.println("Product not found.");
         }
 
-      
+        // 4. Search product by name
         System.out.println("\nSearch by name:");
         ArrayList<Product> searchResults = dao.searchProductsByName("key");
 
@@ -51,7 +51,7 @@ public class DatabaseTest {
             }
         }
 
-       
+        // 5. Update product
         System.out.println("\nUpdate product:");
         Product updatedProduct = new Product("P1002", "Gaming Mouse", "Electronics", 39.99, 20);
 
@@ -63,7 +63,7 @@ public class DatabaseTest {
             System.out.println("Product was not updated.");
         }
 
-        
+        // 6. Check updated product
         System.out.println("\nProduct after update:");
         Product afterUpdate = dao.searchProductById("P1002");
 
@@ -71,6 +71,28 @@ public class DatabaseTest {
             printProduct(afterUpdate);
         } else {
             System.out.println("Product not found.");
+        }
+
+        // 7. Delete product test
+        System.out.println("\nDelete product test:");
+
+        Product deleteTestProduct = new Product("P9999", "Delete Test Item", "Test", 9.99, 1);
+        dao.addProduct(deleteTestProduct);
+
+        boolean deleted = dao.deleteProduct("P9999");
+
+        if (deleted) {
+            System.out.println("Product deleted successfully.");
+        } else {
+            System.out.println("Product was not deleted.");
+        }
+
+        Product deletedProduct = dao.searchProductById("P9999");
+
+        if (deletedProduct == null) {
+            System.out.println("Deleted product cannot be found. Delete test passed.");
+        } else {
+            System.out.println("Delete test failed.");
         }
     }
 
