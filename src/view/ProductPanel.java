@@ -87,6 +87,7 @@ public class ProductPanel extends JPanel {
         panel.add(lowStockButton);
         panel.add(clearButton);
 
+        addButton.addActionListener(e -> addProduct());
         viewButton.addActionListener(e -> viewAllProducts());
         clearButton.addActionListener(e -> clearFields());
 
@@ -103,6 +104,29 @@ public class ProductPanel extends JPanel {
         panel.add(new JScrollPane(displayArea), BorderLayout.CENTER);
 
         return panel;
+    }
+
+    private void addProduct() {
+        try {
+            String id = idField.getText().trim();
+            String name = nameField.getText().trim();
+            String category = categoryField.getText().trim();
+            double price = Double.parseDouble(priceField.getText().trim());
+            int quantity = Integer.parseInt(quantityField.getText().trim());
+
+            boolean added = controller.addProduct(id, name, category, price, quantity);
+
+            if (added) {
+                JOptionPane.showMessageDialog(this, "Product added successfully.");
+                clearFields();
+                viewAllProducts();
+            } else {
+                JOptionPane.showMessageDialog(this, "Product was not added. Please check the input or product ID.");
+            }
+
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Price must be a number and quantity must be an integer.");
+        }
     }
 
     private void viewAllProducts() {
