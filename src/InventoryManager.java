@@ -7,6 +7,7 @@
  *
  * @author 123
  */
+import model.Product;
 import java.util.ArrayList;
 
 public class InventoryManager {

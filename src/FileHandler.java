@@ -7,6 +7,7 @@
  *
  * @author 123
  */
+import model.Product;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
