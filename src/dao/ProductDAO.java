@@ -117,4 +117,45 @@ public class ProductDAO {
 
         return products;
     }
+    
+    
+    
+    public boolean updateProduct(Product product) {
+    String sql = "UPDATE PRODUCTS SET NAME = ?, CATEGORY = ?, PRICE = ?, QUANTITY = ? WHERE PRODUCT_ID = ?";
+
+    try (Connection conn = DBConnection.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setString(1, product.getName());
+        ps.setString(2, product.getCategory());
+        ps.setDouble(3, product.getPrice());
+        ps.setInt(4, product.getQuantity());
+        ps.setString(5, product.getId());
+
+        int rows = ps.executeUpdate();
+        return rows > 0;
+
+    } catch (SQLException e) {
+        System.out.println("Update product error: " + e.getMessage());
+        return false;
+    }
+}
+
+public boolean deleteProduct(String id) {
+    String sql = "DELETE FROM PRODUCTS WHERE PRODUCT_ID = ?";
+
+    try (Connection conn = DBConnection.getConnection();
+         PreparedStatement ps = conn.prepareStatement(sql)) {
+
+        ps.setString(1, id);
+
+        int rows = ps.executeUpdate();
+        return rows > 0;
+
+    } catch (SQLException e) {
+        System.out.println("Delete product error: " + e.getMessage());
+        return false;
+    }
+}
+    
 }
