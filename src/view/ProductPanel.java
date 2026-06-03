@@ -98,8 +98,9 @@ public class ProductPanel extends JPanel {
     private JPanel createDisplayPanel() {
         JPanel panel = new JPanel(new BorderLayout());
 
-        displayArea = new JTextArea(12, 50);
-        displayArea.setEditable(false);
+      displayArea = new JTextArea(14, 70);
+displayArea.setEditable(false);
+displayArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 13));
 
         panel.add(new JLabel("Product Information:"), BorderLayout.NORTH);
         panel.add(new JScrollPane(displayArea), BorderLayout.CENTER);
@@ -130,20 +131,22 @@ public class ProductPanel extends JPanel {
         }
     }
 
-    private void viewAllProducts() {
-        ArrayList<Product> products = controller.getAllProducts();
+   private void viewAllProducts() {
+    ArrayList<Product> products = controller.getAllProducts();
 
-        displayArea.setText("");
+    displayArea.setText("");
 
-        if (products.isEmpty()) {
-            displayArea.setText("No products found.");
-            return;
-        }
-
-        for (Product p : products) {
-            displayArea.append(formatProduct(p));
-        }
+    if (products.isEmpty()) {
+        displayArea.setText("No products found.");
+        return;
     }
+
+    displayArea.append(formatHeader());
+
+    for (Product p : products) {
+        displayArea.append(formatProduct(p));
+    }
+}
 
     private void searchProduct() {
         String id = idField.getText().trim();
@@ -284,14 +287,20 @@ public class ProductPanel extends JPanel {
             JOptionPane.showMessageDialog(this, "Quantity must be an integer for low-stock limit.");
         }
     }
+private String formatHeader() {
+    return String.format("%-10s %-22s %-15s %10s %8s%n",
+            "ID", "Name", "Category", "Price", "Qty")
+            + "--------------------------------------------------------------------------\n";
+}
 
-    private String formatProduct(Product p) {
-        return p.getId() + " | " +
-                p.getName() + " | " +
-                p.getCategory() + " | " +
-                p.getPrice() + " | " +
-                p.getQuantity() + "\n";
-    }
+private String formatProduct(Product p) {
+    return String.format("%-10s %-22s %-15s %10.2f %8d%n",
+            p.getId(),
+            p.getName(),
+            p.getCategory(),
+            p.getPrice(),
+            p.getQuantity());
+}
 
     private void clearFields() {
         idField.setText("");

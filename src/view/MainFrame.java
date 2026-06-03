@@ -11,7 +11,7 @@ public class MainFrame extends JFrame {
 
     public MainFrame() {
         setTitle("Inventory Management System");
-        setSize(900, 600);
+        setSize(1000, 650);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
