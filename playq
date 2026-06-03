@@ -1,0 +1,131 @@
+[33mcommit ffaa51b166cf9f495feafb86f97e72c515b2020b[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: Yuezhi-Hao <xms7983@autuni.ac.nz>
+Date:   Wed Jun 3 16:04:02 2026 +1200
+
+    Improve GUI product table display
+
+[33mcommit ab88bcea025ec09c9f265bb9bc7c3bd93aa2e2b1[m[33m ([m[1;31morigin/main[m[33m)[m
+Author: Yuezhi-Hao <xms7983@autuni.ac.nz>
+Date:   Mon Jun 1 19:53:38 2026 +1200
+
+    Add JUnit tests for ProductDAO
+
+[33mcommit 4b2ba23963ce8cd7a7e64099f717ca0aa09e3c36[m
+Author: Yuezhi-Hao <xms7983@autuni.ac.nz>
+Date:   Mon Jun 1 19:44:14 2026 +1200
+
+    Test GUI product management functions
+
+[33mcommit bb5a02ad89cc0acbc48e8e63fe8e88565ac06452[m
+Author: Yuezhi-Hao <xms7983@autuni.ac.nz>
+Date:   Sun May 31 21:37:50 2026 +1200
+
+    Connect all ProductPanel buttons to system functions
+
+[33mcommit 5d4670d7788ec8749b713246e1eb4ae431a2850a[m
+Author: Yuezhi-Hao <xms7983@autuni.ac.nz>
+Date:   Sun May 31 21:34:05 2026 +1200
+
+    Connect Add Product button to database
+
+[33mcommit 15028075d19f74c381f45463e8704c851920a368[m
+Author: Yuezhi-Hao <xms7983@autuni.ac.nz>
+Date:   Sun May 31 21:31:28 2026 +1200
+
+    Connect View All button to database
+
+[33mcommit 412ce72dced4f435e37c4dd343f2466cce7b0140[m
+Author: Yuezhi-Hao <xms7983@autuni.ac.nz>
+Date:   Sun May 31 21:27:05 2026 +1200
+
+    Add ProductPanel GUI layout
+
+[33mcommit a6e96f3f661fa07fce0e638f220649e0f187a022[m
+Author: Yuezhi-Hao <xms7983@autuni.ac.nz>
+Date:   Sun May 31 21:24:47 2026 +1200
+
+    Add basic GUI main frame
+
+[33mcommit c4025d63c92259c1bb1032bf0ba80dd887b2f0d8[m
+Author: Yuezhi-Hao <xms7983@autuni.ac.nz>
+Date:   Sun May 31 21:21:18 2026 +1200
+
+    Add InventoryController class
+
+[33mcommit fe0a9229934b54c5d3c07bbf8f02b5ded155e388[m
+Author: Yuezhi-Hao <xms7983@autuni.ac.nz>
+Date:   Sun May 31 21:18:09 2026 +1200
+
+    Add InventoryService validation logic
+
+[33mcommit f570802fd87f18deb8bf16d8740f5585ffbed737[m
+Author: Yuezhi-Hao <xms7983@autuni.ac.nz>
+Date:   Sun May 31 21:15:12 2026 +1200
+
+    Add stock update and low stock methods
+
+[33mcommit 8b9db81f7933afb98fbd1875a378d4244ced281f[m
+Author: Yuezhi-Hao <xms7983@autuni.ac.nz>
+Date:   Sun May 31 21:12:09 2026 +1200
+
+    Test ProductDAO update and delete methods
+
+[33mcommit 25ca3ae391b3ae18a2a8061031135ff7ebd965f0[m
+Author: Yuezhi-Hao <xms7983@autuni.ac.nz>
+Date:   Sun May 31 21:07:55 2026 +1200
+
+    Test ProductDAO search and update methods
+
+[33mcommit 3e402301b70f182ceb48c1cb73d5c60735cfbc75[m
+Author: Yuezhi-Hao <xms7983@autuni.ac.nz>
+Date:   Sun May 31 21:02:19 2026 +1200
+
+    Add ProductDAO search methods
+
+[33mcommit 8cea406aadd8a525d346fc23742a1727669b1b3f[m
+Author: Yuezhi-Hao <xms7983@autuni.ac.nz>
+Date:   Sun May 31 20:58:14 2026 +1200
+
+    Add Derby library and test database connection
+
+[33mcommit 5c8238580d5efdd23e8159386ce720b04e3efa27[m
+Author: Yuezhi-Hao <xms7983@autuni.ac.nz>
+Date:   Sun May 31 20:37:28 2026 +1200
+
+    Add Derby library and test database connection
+
+[33mcommit 5b6434e49ada916c7a6de92a03b2d176d71b1943[m
+Author: Yuezhi-Hao <xms7983@autuni.ac.nz>
+Date:   Sun May 31 18:53:50 2026 +1200
+
+    Fix add Derby library and test database connection
+
+[33mcommit 74eb54156d0e6ddf8a4807029d53e069935f0768[m
+Author: Yuezhi-Hao <xms7983@autuni.ac.nz>
+Date:   Sun May 31 18:33:37 2026 +1200
+
+    Test ProductDAO add and view methods
+
+[33mcommit 0447cb8902c7f93be70ac28b18e0b02d803b46a3[m
+Author: Yuezhi-Hao <xms7983@autuni.ac.nz>
+Date:   Sun May 31 17:46:19 2026 +1200
+
+    Add ProductDAO add and view methods
+
+[33mcommit 44441a4f5afdf66ae48e2809d1ebc190a07136dd[m
+Author: Yuezhi-Hao <xms7983@autuni.ac.nz>
+Date:   Sun May 31 17:22:21 2026 +1200
+
+    Add Derby database connection class
+
+[33mcommit aec193f054ad13de8b02545e893cb3782205a398[m
+Author: Yuezhi-Hao <xms7983@autuni.ac.nz>
+Date:   Sun May 31 17:16:18 2026 +1200
+
+    Move Product class to model package
+
+[33mcommit b17ca01d524c3529cd742e6743bf5b3bd620e9cc[m
+Author: Yuezhi-Hao <Yuezhi-Hao@live.nmit.ac.nz>
+Date:   Sun May 31 17:07:32 2026 +1200
+
+    Initial Project 2 setup from Project 1
