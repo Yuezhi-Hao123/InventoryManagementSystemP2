@@ -158,10 +158,11 @@ displayArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 13));
             Product product = controller.searchProductById(id);
 
             if (product != null) {
-                displayArea.append(formatProduct(product));
-            } else {
-                displayArea.setText("Product not found.");
-            }
+    displayArea.append(formatHeader());
+    displayArea.append(formatProduct(product));
+        } else {
+    displayArea.setText("Product not found.");
+}
 
             return;
         }
@@ -169,13 +170,15 @@ displayArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 13));
         if (!name.isEmpty()) {
             ArrayList<Product> products = controller.searchProductsByName(name);
 
-            if (products.isEmpty()) {
-                displayArea.setText("No products found.");
-            } else {
-                for (Product p : products) {
-                    displayArea.append(formatProduct(p));
-                }
-            }
+           if (products.isEmpty()) {
+    displayArea.setText("No products found.");
+} else {
+    displayArea.append(formatHeader());
+
+    for (Product p : products) {
+        displayArea.append(formatProduct(p));
+    }
+}
 
             return;
         }
