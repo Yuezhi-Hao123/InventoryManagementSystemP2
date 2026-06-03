@@ -280,10 +280,12 @@ displayArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 13));
             if (products.isEmpty()) {
                 displayArea.setText("No low-stock products found.");
             } else {
-                displayArea.append("Low-stock products below " + limit + ":\n");
+               displayArea.append("Low-stock products below " + limit + ":\n");
+                displayArea.append(formatHeader());
+
                 for (Product p : products) {
-                    displayArea.append(formatProduct(p));
-                }
+    displayArea.append(formatProduct(p));
+}
             }
 
         } catch (NumberFormatException e) {
