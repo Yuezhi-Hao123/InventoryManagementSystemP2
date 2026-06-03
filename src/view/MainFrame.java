@@ -11,17 +11,22 @@ public class MainFrame extends JFrame {
 
     public MainFrame() {
         setTitle("Inventory Management System");
-        setSize(1000, 650);
+        setSize(950, 650);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLocationRelativeTo(null);
 
         JLabel titleLabel = new JLabel("Inventory Management System", SwingConstants.CENTER);
-        titleLabel.setFont(new Font("Arial", Font.BOLD, 24));
+        titleLabel.setFont(new Font("Arial", Font.BOLD, 26));
+        titleLabel.setBorder(BorderFactory.createEmptyBorder(15, 10, 15, 10));
 
         ProductPanel productPanel = new ProductPanel();
 
-        setLayout(new BorderLayout());
-        add(titleLabel, BorderLayout.NORTH);
-        add(productPanel, BorderLayout.CENTER);
+        JPanel mainPanel = new JPanel(new BorderLayout(10, 10));
+        mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 15, 15, 15));
+
+        mainPanel.add(titleLabel, BorderLayout.NORTH);
+        mainPanel.add(productPanel, BorderLayout.CENTER);
+
+        add(mainPanel);
     }
 }
