@@ -39,7 +39,7 @@ public class ProductPanel extends JPanel {
     private JPanel createInputPanel() {
         JPanel panel = new JPanel(new GridLayout(5, 2, 5, 5));
 
-        panel.add(new JLabel("Product ID:"));
+        panel.add(new JLabel("Product Id:"));
         idField = new JTextField();
         panel.add(idField);
 
