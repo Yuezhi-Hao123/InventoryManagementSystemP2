@@ -26,44 +26,49 @@ public class ProductPanel extends JPanel {
 
     private InventoryController controller;
 
-    public ProductPanel() {
-        controller = new InventoryController();
+   public ProductPanel() {
+    controller = new InventoryController();
 
-        setLayout(new BorderLayout(10, 10));
+    setLayout(new BorderLayout(10, 10));
+    setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        add(createInputPanel(), BorderLayout.NORTH);
-        add(createButtonPanel(), BorderLayout.CENTER);
-        add(createDisplayPanel(), BorderLayout.SOUTH);
-    }
+    JPanel topPanel = new JPanel(new BorderLayout(10, 10));
+    topPanel.add(createInputPanel(), BorderLayout.NORTH);
+    topPanel.add(createButtonPanel(), BorderLayout.SOUTH);
 
-    private JPanel createInputPanel() {
-        JPanel panel = new JPanel(new GridLayout(5, 2, 5, 5));
+    add(topPanel, BorderLayout.NORTH);
+    add(createDisplayPanel(), BorderLayout.CENTER);
+}
+  private JPanel createInputPanel() {
+    JPanel panel = new JPanel(new GridLayout(5, 2, 8, 8));
+    panel.setBorder(BorderFactory.createTitledBorder("Product Details"));
 
-        panel.add(new JLabel("Product Id:"));
-        idField = new JTextField();
-        panel.add(idField);
+    panel.add(new JLabel("Product ID:"));
+    idField = new JTextField();
+    panel.add(idField);
 
-        panel.add(new JLabel("Product Name:"));
-        nameField = new JTextField();
-        panel.add(nameField);
+    panel.add(new JLabel("Product Name:"));
+    nameField = new JTextField();
+    panel.add(nameField);
 
-        panel.add(new JLabel("Category:"));
-        categoryField = new JTextField();
-        panel.add(categoryField);
+    panel.add(new JLabel("Category:"));
+    categoryField = new JTextField();
+    panel.add(categoryField);
 
-        panel.add(new JLabel("Price:"));
-        priceField = new JTextField();
-        panel.add(priceField);
+    panel.add(new JLabel("Price:"));
+    priceField = new JTextField();
+    panel.add(priceField);
 
-        panel.add(new JLabel("Quantity:"));
-        quantityField = new JTextField();
-        panel.add(quantityField);
+    panel.add(new JLabel("Quantity:"));
+    quantityField = new JTextField();
+    panel.add(quantityField);
 
-        return panel;
-    }
+    return panel;
+}
 
-    private JPanel createButtonPanel() {
-        JPanel panel = new JPanel(new GridLayout(2, 4, 5, 5));
+   private JPanel createButtonPanel() {
+    JPanel panel = new JPanel(new GridLayout(2, 4, 8, 8));
+    panel.setBorder(BorderFactory.createTitledBorder("Actions"));
 
         addButton = new JButton("Add Product");
         viewButton = new JButton("View All");
@@ -74,6 +79,17 @@ public class ProductPanel extends JPanel {
         lowStockButton = new JButton("Low Stock");
         clearButton = new JButton("Clear");
 
+        
+styleButton(addButton);
+styleButton(viewButton);
+searchButton.setToolTipText("Search by product ID or product name");
+styleButton(searchButton);
+styleButton(updateButton);
+styleButton(deleteButton);
+styleButton(updateStockButton);
+styleButton(lowStockButton);
+styleButton(clearButton);
+        
         panel.add(addButton);
         panel.add(viewButton);
         panel.add(searchButton);
@@ -94,13 +110,18 @@ public class ProductPanel extends JPanel {
 
         return panel;
     }
-
+   
+private void styleButton(JButton button) {
+    button.setFont(new Font("Arial", Font.BOLD, 14));
+    button.setFocusPainted(false);
+    button.setMargin(new Insets(8, 10, 8, 10));
+}
     private JPanel createDisplayPanel() {
         JPanel panel = new JPanel(new BorderLayout());
 
-      displayArea = new JTextArea(14, 70);
+     displayArea = new JTextArea(16, 60);
 displayArea.setEditable(false);
-displayArea.setFont(new Font(Font.MONOSPACED, Font.PLAIN, 13));
+displayArea.setFont(new Font("Monospaced", Font.PLAIN, 13));
 
         panel.add(new JLabel("Product Information:"), BorderLayout.NORTH);
         panel.add(new JScrollPane(displayArea), BorderLayout.CENTER);
