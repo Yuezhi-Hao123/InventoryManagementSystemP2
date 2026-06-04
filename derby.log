@@ -1,4 +1,4 @@
-Thu Jun 04 16:53:21 NZST 2026 Thread[#43,AWT-EventQueue-0,6,main] Cleanup action starting
+Thu Jun 04 16:56:25 NZST 2026 Thread[#43,AWT-EventQueue-0,6,main] Cleanup action starting
 java.sql.SQLException: Failed to start database 'inventoryDB' with class loader jdk.internal.loader.ClassLoaders$AppClassLoader@232204a1, see the next exception for details.
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
 	at org.apache.derby.impl.jdbc.SQLExceptionFactory.getSQLException(Unknown Source)
