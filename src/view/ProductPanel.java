@@ -39,32 +39,60 @@ public class ProductPanel extends JPanel {
     add(topPanel, BorderLayout.NORTH);
     add(createDisplayPanel(), BorderLayout.CENTER);
 }
-  private JPanel createInputPanel() {
-    JPanel panel = new JPanel(new GridLayout(5, 2, 8, 8));
-    panel.setBorder(BorderFactory.createTitledBorder("Product Details"));
+ private JPanel createInputPanel() {
+    JPanel outerPanel = new JPanel(new BorderLayout(0, 8));
+    outerPanel.setBorder(BorderFactory.createEmptyBorder(5, 5, 5, 5));
 
-    panel.add(new JLabel("Product ID:"));
+    JLabel titleLabel = new JLabel("Product Details");
+    titleLabel.setFont(new Font("Arial", Font.BOLD, 18));
+
+    JPanel formPanel = new JPanel(new GridBagLayout());
+    formPanel.setBorder(BorderFactory.createCompoundBorder(
+            BorderFactory.createLineBorder(new Color(190, 200, 210)),
+            BorderFactory.createEmptyBorder(12, 14, 12, 14)
+    ));
+
     idField = new JTextField();
-    panel.add(idField);
-
-    panel.add(new JLabel("Product Name:"));
     nameField = new JTextField();
-    panel.add(nameField);
-
-    panel.add(new JLabel("Category:"));
     categoryField = new JTextField();
-    panel.add(categoryField);
-
-    panel.add(new JLabel("Price:"));
     priceField = new JTextField();
-    panel.add(priceField);
-
-    panel.add(new JLabel("Quantity:"));
     quantityField = new JTextField();
-    panel.add(quantityField);
 
-    return panel;
+    GridBagConstraints gbc = new GridBagConstraints();
+    gbc.insets = new Insets(6, 6, 6, 6);
+    gbc.fill = GridBagConstraints.HORIZONTAL;
+
+    addFormRow(formPanel, gbc, 0, "Product ID:", idField);
+    addFormRow(formPanel, gbc, 1, "Product Name:", nameField);
+    addFormRow(formPanel, gbc, 2, "Category:", categoryField);
+    addFormRow(formPanel, gbc, 3, "Price:", priceField);
+    addFormRow(formPanel, gbc, 4, "Quantity:", quantityField);
+
+    outerPanel.add(titleLabel, BorderLayout.NORTH);
+    outerPanel.add(formPanel, BorderLayout.CENTER);
+
+    return outerPanel;
 }
+ 
+ private void addFormRow(JPanel panel, GridBagConstraints gbc, int row, String labelText, JTextField textField) {
+    JLabel label = new JLabel(labelText);
+    label.setFont(new Font("Arial", Font.BOLD, 14));
+    label.setPreferredSize(new Dimension(140, 26));
+
+    textField.setFont(new Font("Arial", Font.PLAIN, 14));
+    textField.setPreferredSize(new Dimension(320, 28));
+
+    gbc.gridx = 0;
+    gbc.gridy = row;
+    gbc.weightx = 0;
+    panel.add(label, gbc);
+
+    gbc.gridx = 1;
+    gbc.gridy = row;
+    gbc.weightx = 1;
+    panel.add(textField, gbc);
+}
+ 
 
    private JPanel createButtonPanel() {
     JPanel panel = new JPanel(new GridLayout(2, 4, 8, 8));
