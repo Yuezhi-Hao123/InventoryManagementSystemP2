@@ -70,33 +70,33 @@ public class ProductDAOTest {
         assertNull(dao.searchProductById("T1004"));
     }
 
-    @Test
-    public void testUpdateStockQuantity() {
-        Product product = new Product("T1005", "Stock Item", "Test", 30.0, 10);
-        dao.addProduct(product);
+   @Test
+public void testUpdateStockQuantity() {
+    Product product = new Product("T1005", "Stock Item", "Test", 30.0, 10);
+    dao.addProduct(product);
 
-        boolean updated = dao.updateStockQuantity("T1005", -3);
+    boolean updated = dao.updateStockQuantity("T1005", 3);
 
-        Product found = dao.searchProductById("T1005");
+    Product found = dao.searchProductById("T1005");
 
-        assertTrue(updated);
-        assertNotNull(found);
-        assertEquals(7, found.getQuantity());
-    }
+    assertTrue(updated);
+    assertNotNull(found);
+    assertEquals(3, found.getQuantity());
+}
 
-    @Test
-    public void testCannotReduceStockBelowZero() {
-        Product product = new Product("T1001", "Low Stock Test", "Test", 10.0, 5);
-        dao.addProduct(product);
+   @Test
+public void testCannotReduceStockBelowZero() {
+    Product product = new Product("T1001", "Low Stock Test", "Test", 10.0, 5);
+    dao.addProduct(product);
 
-        boolean updated = dao.updateStockQuantity("T1001", -100);
+    boolean updated = dao.updateStockQuantity("T1001", -100);
 
-        Product found = dao.searchProductById("T1001");
+    Product found = dao.searchProductById("T1001");
 
-        assertFalse(updated);
-        assertNotNull(found);
-        assertEquals(5, found.getQuantity());
-    }
+    assertFalse(updated);
+    assertNotNull(found);
+    assertEquals(5, found.getQuantity());
+}
 
     @Test
     public void testGetLowStockProducts() {

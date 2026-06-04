@@ -42,9 +42,9 @@ public class InventoryController {
         return service.deleteProduct(id);
     }
 
-    public boolean updateStockQuantity(String id, int change) {
-        return service.updateStockQuantity(id, change);
-    }
+ public boolean updateStockQuantity(String id, int newQuantity) {
+    return service.updateStockQuantity(id, newQuantity);
+}
 
     public ArrayList<Product> getLowStockProducts(int limit) {
         return service.getLowStockProducts(limit);

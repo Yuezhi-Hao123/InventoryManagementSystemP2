@@ -157,16 +157,15 @@ public boolean deleteProduct(String id) {
         return false;
     }
 }
-public boolean updateStockQuantity(String id, int change) {
-    Product product = searchProductById(id);
+        public boolean updateStockQuantity(String id, int newQuantity) {
 
-    if (product == null) {
+    if (newQuantity < 0) {
         return false;
     }
 
-    int newQuantity = product.getQuantity() + change;
+    Product product = searchProductById(id);
 
-    if (newQuantity < 0) {
+    if (product == null) {
         return false;
     }
 
@@ -186,6 +185,7 @@ public boolean updateStockQuantity(String id, int change) {
         return false;
     }
 }
+
 
 public ArrayList<Product> getLowStockProducts(int limit) {
     ArrayList<Product> products = new ArrayList<>();

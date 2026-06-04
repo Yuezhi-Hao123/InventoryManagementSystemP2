@@ -62,13 +62,17 @@ public class InventoryService {
         return productDAO.deleteProduct(id);
     }
 
-    public boolean updateStockQuantity(String id, int change) {
-        if (id == null || id.trim().isEmpty()) {
-            return false;
-        }
-
-        return productDAO.updateStockQuantity(id, change);
+   public boolean updateStockQuantity(String id, int newQuantity) {
+    if (id == null || id.trim().isEmpty()) {
+        return false;
     }
+
+    if (newQuantity < 0) {
+        return false;
+    }
+
+    return productDAO.updateStockQuantity(id, newQuantity);
+}
 
     public ArrayList<Product> getLowStockProducts(int limit) {
         return productDAO.getLowStockProducts(limit);

@@ -286,31 +286,41 @@ displayArea.setFont(new Font("Monospaced", Font.PLAIN, 13));
         }
     }
 
-    private void updateStockQuantity() {
-        try {
-            String id = idField.getText().trim();
+   private void updateStockQuantity() {
+    try {
+        String id = idField.getText().trim();
 
-            if (id.isEmpty()) {
-                JOptionPane.showMessageDialog(this, "Please enter Product ID.");
-                return;
-            }
-
-            int change = Integer.parseInt(quantityField.getText().trim());
-
-            boolean updated = controller.updateStockQuantity(id, change);
-
-            if (updated) {
-                JOptionPane.showMessageDialog(this, "Stock quantity updated successfully.");
-                clearFields();
-                viewAllProducts();
-            } else {
-                JOptionPane.showMessageDialog(this, "Stock was not updated. Please check the Product ID or quantity.");
-            }
-
-        } catch (NumberFormatException e) {
-            JOptionPane.showMessageDialog(this, "Quantity must be an integer. Use positive number to add stock or negative number to reduce stock.");
+        if (id.isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter Product ID.");
+            return;
         }
+
+        if (quantityField.getText().trim().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Please enter the new stock quantity.");
+            return;
+        }
+
+        int newQuantity = Integer.parseInt(quantityField.getText().trim());
+
+        if (newQuantity < 0) {
+            JOptionPane.showMessageDialog(this, "Stock quantity cannot be negative.");
+            return;
+        }
+
+        boolean updated = controller.updateStockQuantity(id, newQuantity);
+
+        if (updated) {
+            JOptionPane.showMessageDialog(this, "Stock quantity updated successfully.");
+            clearFields();
+            viewAllProducts();
+        } else {
+            JOptionPane.showMessageDialog(this, "Stock was not updated. Please check the Product ID.");
+        }
+
+    } catch (NumberFormatException e) {
+        JOptionPane.showMessageDialog(this, "Quantity must be an integer.");
     }
+}
 
     private void viewLowStockProducts() {
         int limit = 10;
